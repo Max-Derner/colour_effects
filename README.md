@@ -25,3 +25,7 @@ Right, get this. What if instead of trying to integrate colours into figlet and 
 ...and that would probably be about it
 
 I'll get to creating a bit of a POC for us
+
+# Max prog
+\- 21st Nov  
+I've started some POCs but it's only in 4bit colour. would be pretty sweet to expand it to 8bit. There's two varieties of working out colours, my [first pass](./POCs/ansi_codes.py) was alright but it's proper verbose. [Second pass](./POCs/bansi_codes.py) just feels right but it doesn't play properly with the way I've set up that compile ansi code function, so I might look at trying to swap that so it just takes a whole tonne of styles and it's up to you to not pass multiple foreground colours or background colours or whatever.
