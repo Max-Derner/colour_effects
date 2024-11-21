@@ -29,3 +29,8 @@ I'll get to creating a bit of a POC for us
 # Max prog
 \- 21st Nov  
 I've started some POCs but it's only in 4bit colour. would be pretty sweet to expand it to 8bit. There's two varieties of working out colours, my [first pass](./POCs/ansi_codes.py) was alright but it's proper verbose. [Second pass](./POCs/bansi_codes.py) just feels right but it doesn't play properly with the way I've set up that compile ansi code function, so I might look at trying to swap that so it just takes a whole tonne of styles and it's up to you to not pass multiple foreground colours or background colours or whatever.
+
+# Angles idea
+So, right now there's a way to do gradients that are vertical. If we can figure out a way to represent the colours in a list separate to the text. Then to do angles we just shift the colours in a given direction. To define the angle, we can ask for a number between 0 and 1, then divide 1 by that number to give how many lines we should skip before shifting the colours. 
+
+So, an angle of 0.5 gives 2 lines together, then shift all the next lines by 1, then 2 more lines and shift all the next lines by 1 again.
