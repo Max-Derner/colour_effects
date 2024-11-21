@@ -3,3 +3,9 @@ zzz/
 
 # Keep your IDE crap out of our project!
 .vscode
+
+# Keep that outta the way!
+**/__pycache__
+
+# venv
+pyg
