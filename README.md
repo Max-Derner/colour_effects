@@ -19,7 +19,7 @@ We will likely end up using colours from the [8bit ANSI escape codes](https://en
 # Change of requirements
 
 Right, get this. What if instead of trying to integrate colours into figlet and releasing that as a project. We just create a project that can do fun colour stuff. So I'm thinking you'd have:
-* an object you can use to describe a general style and then apply that style to some text
+* an object you can use to describe a general style and then apply that style to some text [POC](./POCs/ansi_codes.py)
 * an interactive app that lets you create a file you can cat out that will have colours in it
 
 ...and that would probably be about it
