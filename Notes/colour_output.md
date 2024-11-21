@@ -1,6 +1,6 @@
 # Colour output! How do?
 
-So, a cursory web search shows a _LOT_ of people talking about the ANSII escape sequences. 
+So, a cursory web search shows a _LOT_ of people talking about the ANSI escape sequences. 
 
 There's mention in [this stack overflow thread](https://stackoverflow.com/questions/287871/how-do-i-print-colored-text-to-the-terminal) that bloody windows is all problematic and you need to run `os.system('color')` before any colours will work. 
 
@@ -14,7 +14,7 @@ init()
 print(colored('Hello, World!', 'green', 'on_red'))
 ```
 
-I seem to be coming across colorama and termcolor again and again and again... (along with ANSII escapes of course).  
+I seem to be coming across colorama and termcolor again and again and again... (along with ANSI escapes of course).  
 Now, I don't really want to be taking on subdependencies for such a simple jobs, so I'm just going see how complicated their secrets are.
 
 * [`colorama`](https://pypi.org/project/colorama/)
@@ -26,7 +26,7 @@ Now, I don't really want to be taking on subdependencies for such a simple jobs,
 Is mindbogglingly simple, there is absolutely nothing to it and the testing is a mix of overcomplicated and questionable albeit comprehensive.  
 [termcolor on GitHub](https://github.com/termcolor/termcolor/tree/main/src/termcolor)
 
-Also, `termcolor` just uses ANSII escapes and that's it.
+Also, `termcolor` just uses ANSI escapes and that's it.
 
 ## `colorama`
 
@@ -44,6 +44,6 @@ Not a bad package at all, it's got some complexity to it but nowhere near the sa
 
 # Conclusion
 
-Everyone uses ANSII, it's just that some systems need a hell of a lot of hand-holding.
+Everyone uses ANSI, it's just that some systems need a hell of a lot of hand-holding.
 
-Now in terms of subdependencies, I would much rather have none if possible and spaffing out a bunch of ANSII codes is in no way what-so-ever a complicated task. **_But_** I am quite happy to concede that if we want to do cross-platform support for everyone and their Grandmas then we will want to leverage someone elses hard work.
+Now in terms of subdependencies, I would much rather have none if possible and spaffing out a bunch of ANSI codes is in no way what-so-ever a complicated task. **_But_** I am quite happy to concede that if we want to do cross-platform support for everyone and their Grandmas then we will want to leverage someone elses hard work.
