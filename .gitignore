@@ -1,0 +1,5 @@
+# Shhh... code is sleeping in here
+zzz/
+
+# Keep your IDE crap out of our project!
+.vscode
