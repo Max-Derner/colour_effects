@@ -12,6 +12,6 @@ We will likely end up using colours from the 8bits ANSI escape codes:
 ![ANSI escape codes](./README_IMGS/8bit-colour-ref.png)
 
 # What do?
-* Study figlet fonts to learn their secrets 
+* Study figlet fonts to learn their secrets [write-up](./Notes/figlet.md)
 * Study colour outputting Python libraries to learn their secrets [write-up](./Notes/colour_output.md)
 * Study Poetry, because I kinda want to learn how that works and it should ultimately make deploying a PyPI package a little bit easier
