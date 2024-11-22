@@ -18,6 +18,9 @@ class Style(str, Enum):
     DUNDERLINE = '21'
 
 
+# bloody love this approach, it leads to real nice sublime code
+# like Colour.RED.bright
+# BUT I can't have Colour.RED.bright.background
 class Colour(str, Enum):
     BLACK = '30'
     RED = '31'
@@ -41,26 +44,15 @@ class Colour(str, Enum):
         )
 
 
-def compile_ansi_code(
-        style: Style | None = None,
-        foreground: str | None = None,
-        background: str | None = None,
-        ) -> str:
-    code = CSI
-    style = style or Style.RESET
-    code += style + ';'
-    if foreground is not None:
-        code += foreground + ';'
-    if background is not None:
-        code += background
-    return code.strip(';') + 'm'
+def compile_ansi_code(*ansi_vals) -> str:
+    return CSI + ';'.join(ansi_vals) + 'm'
 
 
 if __name__ == "__main__":
     ansi_code = compile_ansi_code(
-        style=Style.BLINK,
-        foreground=Colour.YELLOW.bright,
-        background=Colour.MAGENTA.background,
+        Style.BLINK,
+        Colour.YELLOW.bright,
+        Colour.MAGENTA.background,
     )
     reset_code = compile_ansi_code()
     print(F"HELLO {ansi_code}WORLD{reset_code}!")
