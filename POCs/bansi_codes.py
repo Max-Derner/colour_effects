@@ -18,9 +18,6 @@ class Style(str, Enum):
     DUNDERLINE = '21'
 
 
-# bloody love this approach, it leads to real nice sublime code
-# like Colour.RED.bright
-# BUT I can't have Colour.RED.bright.background
 class Colour(str, Enum):
     BLACK = '30'
     RED = '31'
@@ -43,9 +40,30 @@ class Colour(str, Enum):
             int(self) + 10
         )
 
+    @property
+    def bright_background(self):
+        return str(
+            int(self) + 70
+        )
+
 
 def compile_ansi_code(*ansi_vals) -> str:
+    """Feed in any number of colours and styles and get a compiled ANSI
+    code.
+
+    Example:
+
+    ```python
+    compile_ansi_code(
+        Colour.RED.bright,
+        Colour.BLACK.bright_background,
+        Style.BLINK,
+        Style.BOLD
+    )
+    ```"""
+    ansi_vals = ansi_vals or (Style.RESET, )
     return CSI + ';'.join(ansi_vals) + 'm'
+
 
 
 if __name__ == "__main__":
