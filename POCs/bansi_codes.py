@@ -65,7 +65,6 @@ def compile_ansi_code(*ansi_vals) -> str:
     return CSI + ';'.join(ansi_vals) + 'm'
 
 
-
 if __name__ == "__main__":
     ansi_code = compile_ansi_code(
         Style.BLINK,
