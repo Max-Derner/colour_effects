@@ -13,16 +13,29 @@ def apply_vertical_gradient(
     text_length = max(
         [len(line) for line in lines_of_text]
     )
-    colour_array = _build_colour_array(text_length, ansi_codes)
+    colour_array = _build_vertical_ansi_array(text_length, ansi_codes)
+
+    code_array = []
+    for line_no in range(len(lines_of_text)):
+        if line_no != 0 and line_no % step == 0:
+            colour_array = colour_array[indent:] + colour_array[:indent]
+        code_array.append(colour_array)
+
+    return apply_ansi_codes(lines_of_text, code_array)
+
+
+def apply_ansi_codes(
+        lines_of_text: list[str],
+        ansi_array: list[list[str]]
+        ) -> str:
     output = ''
     current_code = None
     RESET = compile_ansi_code()
     for line_no, line in enumerate(lines_of_text):
-        if line_no != 0 and line_no % step == 0:
-            colour_array = colour_array[indent:] + colour_array[:indent]
+        codes = ansi_array[line_no]
         for idx, char in enumerate(line):
-            idx = idx % len(colour_array)
-            if current_code != (new_code := colour_array[idx]):
+            idx = idx % len(codes)
+            if current_code != (new_code := codes[idx]):
                 current_code = new_code
                 output += current_code + char
             else:
@@ -32,24 +45,23 @@ def apply_vertical_gradient(
     return output
 
 
-def _build_colour_array(
+def _build_vertical_ansi_array(
         array_length: int,
         ansi_codes: list[str],
         ) -> list[str]:
     """expands a list of ANSI codes to a new length such that any code
-    appearing before another code in the original list will not appear 
+    appearing before another code in the original list will not appear
     after that code in the new list.
 
     Example:
 
     [1, 2, 3] with new length 6 gives [1, 1, 2, 2, 3, 3]"""
     colour_length = ceil(array_length / len(ansi_codes))
-    colour_array = [
+    return [
         ansi_code
         for ansi_code in ansi_codes
         for _ in range(colour_length)
     ]
-    return colour_array
 
 
 if __name__ == "__main__":
