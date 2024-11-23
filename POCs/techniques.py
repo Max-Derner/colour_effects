@@ -13,13 +13,43 @@ def apply_vertical_gradient(
     text_length = max(
         [len(line) for line in lines_of_text]
     )
-    colour_array = _build_vertical_ansi_array(text_length, ansi_codes)
+    ansi_codes = _expand_ansi_codes(text_length, ansi_codes)
 
     code_array = []
     for line_no in range(len(lines_of_text)):
         if line_no != 0 and line_no % step == 0:
-            colour_array = colour_array[indent:] + colour_array[:indent]
-        code_array.append(colour_array)
+            ansi_codes = ansi_codes[indent:] + ansi_codes[:indent]
+        code_array.append(ansi_codes)
+
+    return apply_ansi_codes(lines_of_text, code_array)
+
+
+def apply_horizontal_gradient(
+        text: str,
+        ansi_codes: list,
+        *,
+        step: int = 1,
+        indent: int = 1,
+        ) -> str:
+    lines_of_text = text.split('\n')
+    text_depth = len(lines_of_text)
+    text_length = max(
+        [len(line) for line in lines_of_text]
+    )
+    ansi_codes = _expand_ansi_codes(text_depth, ansi_codes)
+
+    array_bias = []
+    for col_no in range(text_length):
+        step_no = col_no // step
+        array_bias.append(step_no * indent)
+
+    code_array = []
+    for line_no in range(text_depth):
+        code_line = []
+        for col_no in range(text_length):
+            code_idx = (line_no + array_bias[col_no]) % len(ansi_codes)
+            code_line.append(ansi_codes[code_idx])
+        code_array.append(code_line)
 
     return apply_ansi_codes(lines_of_text, code_array)
 
@@ -45,7 +75,7 @@ def apply_ansi_codes(
     return output
 
 
-def _build_vertical_ansi_array(
+def _expand_ansi_codes(
         array_length: int,
         ansi_codes: list[str],
         ) -> list[str]:
@@ -96,19 +126,30 @@ if __name__ == "__main__":
         red,
         orange,
         yellow,
-        green,
-        blue,
-        indigo,
-        violet,
+        # green,
+        # blue,
+        # indigo,
+        # violet,
     ]
 
-    sample_path = Path(__file__).parent.joinpath('promo_sample.txt')
+    sample_path = Path(__file__).parent.joinpath('sample_b.txt')
     with open(sample_path, mode='r') as f:
         text = f.read()
 
-    output = apply_vertical_gradient(text, codes, step=1, indent=11)
+    step = 15
+    indent = -1
+
+    output = apply_vertical_gradient(text, codes, step=step, indent=indent)
+    print(output)
+    output = apply_horizontal_gradient(text, codes, step=step, indent=indent)
     from pathlib import Path
-    output_path = Path(__file__).parent.parent.joinpath('zzz').joinpath('output.txt')
+    output_path = Path(
+        __file__
+        ).parent.parent.joinpath(
+            'zzz'
+            ).joinpath(
+                'output.txt'
+                )
     with open(output_path, mode='w') as f:
         f.write(output)
     print(output)
