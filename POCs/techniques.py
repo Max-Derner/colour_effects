@@ -2,6 +2,29 @@ from math import ceil
 from bansi_codes import Style, compile_ansi_code
 
 
+# This whole thing needs a rejig
+#
+# These apply functions should simply add ansi vals into a 3D array of
+# array[lines][columns][vals]
+# Apply ansi codes should then compile the vals into codes
+
+
+def apply_shimmer(text: str, spread: int) -> str:
+    BLINK_CODE = compile_ansi_code(Style.BLINK)
+    RESET_CODE = compile_ansi_code()
+    output = ''
+    for line_no, line in enumerate(text.split('\n')):
+        # print('a')
+        for col_no, char in enumerate(line):
+            # print('b')
+            if (line_no + col_no) % spread == 0:
+                output += BLINK_CODE + char + RESET_CODE
+            else:
+                output += char
+        output += '\n'
+    return output
+
+
 def apply_vertical_gradient(
         text: str,
         ansi_codes: list,
@@ -139,9 +162,8 @@ if __name__ == "__main__":
     step = 15
     indent = -1
 
-    output = apply_vertical_gradient(text, codes, step=step, indent=indent)
-    print(output)
-    output = apply_horizontal_gradient(text, codes, step=step, indent=indent)
+    output = apply_shimmer(text, 3)
+
     from pathlib import Path
     output_path = Path(
         __file__
