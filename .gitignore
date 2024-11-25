@@ -1,11 +1,13 @@
+
+
 # Shhh... code is sleeping in here
 zzz/
 
-# Keep your IDE crap out of our project!
+# Keep IDE mess out of the project!
 .vscode
 
 # Keep that outta the way!
 **/__pycache__
 
-# venv
-pyg
+# Don't send the venv!
+cfx
