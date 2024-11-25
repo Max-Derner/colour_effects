@@ -119,15 +119,32 @@ def _expand_ansi_codes(
 
 if __name__ == "__main__":
     from bansi_codes import Colour
+    from eight_bit_codes import SimpleColour, RGB, Grey
     from pathlib import Path
 
-    red = compile_ansi_code(Colour.RED, Style.BOLD)
-    orange = compile_ansi_code(Colour.RED.bright, Style.BOLD)
-    yellow = compile_ansi_code(Colour.YELLOW.bright, Style.BOLD)
-    green = compile_ansi_code(Colour.GREEN, Style.BOLD)
-    blue = compile_ansi_code(Colour.BLUE, Style.BOLD)
-    indigo = compile_ansi_code(Colour.BLUE.bright, Style.BOLD)
-    violet = compile_ansi_code(Colour.MAGENTA, Style.BOLD)
+    # red = compile_ansi_code(Colour.RED, Style.BOLD)
+    # orange = compile_ansi_code(Colour.RED.bright, Style.BOLD)
+    # yellow = compile_ansi_code(Colour.YELLOW.bright, Style.BOLD)
+    # green = compile_ansi_code(Colour.GREEN, Style.BOLD)
+    # blue = compile_ansi_code(Colour.BLUE, Style.BOLD)
+    # indigo = compile_ansi_code(Colour.BLUE.bright, Style.BOLD)
+    # violet = compile_ansi_code(Colour.MAGENTA, Style.BOLD)
+
+    # red = compile_ansi_code(SimpleColour.RED, SimpleColour.WHITE.background, Style.BOLD)
+    # orange = compile_ansi_code(SimpleColour.RED.bright, Style.BOLD)
+    # yellow = compile_ansi_code(SimpleColour.YELLOW.bright, Style.BOLD)
+    # green = compile_ansi_code(SimpleColour.GREEN, Style.BOLD)
+    # blue = compile_ansi_code(SimpleColour.BLUE, Style.BOLD)
+    # indigo = compile_ansi_code(SimpleColour.BLUE.bright, Style.BOLD)
+    # violet = compile_ansi_code(SimpleColour.MAGENTA, Style.BOLD)
+
+    red = compile_ansi_code(RGB(6, 0, 0).foreground, Style.BOLD)
+    orange = compile_ansi_code(RGB(6, 4, 4).foreground, Style.BOLD)
+    yellow = compile_ansi_code(RGB(0, 6, 6).foreground, Style.BOLD)
+    green = compile_ansi_code(RGB(0, 6, 0).foreground, Style.BOLD)
+    blue = compile_ansi_code(RGB(0, 0, 6).foreground, Style.BOLD)
+    indigo = compile_ansi_code(RGB(4, 4, 6).foreground, Style.BOLD)
+    violet = compile_ansi_code(RGB(6, 6, 0).foreground, Style.BOLD)
 
     # red = compile_ansi_code(Colour.RED.background)
     # orange = compile_ansi_code(Colour.RED.bright_background)
@@ -145,14 +162,40 @@ if __name__ == "__main__":
     # indigo = compile_ansi_code(Colour.BLUE.bright_background, Style.BLINK)
     # violet = compile_ansi_code(Colour.MAGENTA.background, Style.BLINK)
 
-    codes = [
+    colour_codes = [
         red,
         orange,
         yellow,
-        # green,
-        # blue,
-        # indigo,
-        # violet,
+        green,
+        blue,
+        indigo,
+        violet,
+    ]
+    grey_codes = [
+        compile_ansi_code(Grey.A.foreground, Style.BOLD),
+        compile_ansi_code(Grey.B.foreground, Style.BOLD),
+        compile_ansi_code(Grey.C.foreground, Style.BOLD),
+        compile_ansi_code(Grey.D.foreground, Style.BOLD),
+        compile_ansi_code(Grey.E.foreground, Style.BOLD),
+        compile_ansi_code(Grey.F.foreground, Style.BOLD),
+        compile_ansi_code(Grey.G.foreground, Style.BOLD),
+        compile_ansi_code(Grey.H.foreground, Style.BOLD),
+        compile_ansi_code(Grey.I.foreground, Style.BOLD),
+        compile_ansi_code(Grey.J.foreground, Style.BOLD),
+        compile_ansi_code(Grey.K.foreground, Style.BOLD),
+        compile_ansi_code(Grey.L.foreground, Style.BOLD),
+        compile_ansi_code(Grey.M.foreground, Style.BOLD),
+        compile_ansi_code(Grey.N.foreground, Style.BOLD),
+        compile_ansi_code(Grey.O.foreground, Style.BOLD),
+        compile_ansi_code(Grey.P.foreground, Style.BOLD),
+        compile_ansi_code(Grey.Q.foreground, Style.BOLD),
+        compile_ansi_code(Grey.R.foreground, Style.BOLD),
+        compile_ansi_code(Grey.S.foreground, Style.BOLD),
+        compile_ansi_code(Grey.T.foreground, Style.BOLD),
+        compile_ansi_code(Grey.U.foreground, Style.BOLD),
+        compile_ansi_code(Grey.V.foreground, Style.BOLD),
+        compile_ansi_code(Grey.W.foreground, Style.BOLD),
+        compile_ansi_code(Grey.X.foreground, Style.BOLD),
     ]
 
     sample_path = Path(__file__).parent.joinpath('sample_b.txt')
@@ -162,7 +205,8 @@ if __name__ == "__main__":
     step = 15
     indent = -1
 
-    output = apply_shimmer(text, 3)
+    # output = apply_shimmer(text, 3)
+    output = apply_vertical_gradient(text, grey_codes, step=1, indent=2)
 
     from pathlib import Path
     output_path = Path(
