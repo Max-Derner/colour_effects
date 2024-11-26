@@ -1,4 +1,6 @@
-[![Test and lint](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml/badge.svg)](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml)
+[![Test and lint](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml/badge.svg?branch=main)](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml)
+
+
 ![promo image](./README_IMGS/promo_img.png)
 
 This a a project to develop a Python PyPI package that not just handles colour text output but can also apply sweet colour effects to your text.
