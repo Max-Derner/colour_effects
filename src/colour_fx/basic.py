@@ -1,9 +1,9 @@
+from typing import TypeAlias
 
-
-type ansi_val = str
-type ansi_code = str
-type ansi_val_collection = list[list[ansi_val]]
-type ansi_field = list[ansi_val_collection]
+ansi_val: TypeAlias = str
+ansi_code: TypeAlias = str
+ansi_val_collection: TypeAlias = list[list[ansi_val]]
+ansi_field: TypeAlias = list[ansi_val_collection]
 
 # Control Sequence Introducer
 CSI = '\033['
