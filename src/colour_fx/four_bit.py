@@ -1,18 +1,25 @@
 from enum import Enum
-from . import ansi_val
+from .basic import ansi_val
 
 
 # Taken from section 'Select Graphic Rendition parameters' in
 # https://en.wikipedia.org/wiki/ANSI_escape_code#Control_Sequence_Introducer_commands
 # Skipping lots of stuff that's not widely supported
 class Style(str, Enum):
-    RESET = '0'
     BOLD = '1'
     FAINT = '2'
     UNDERLINE = '4'
     BLINK = '5'
     STRIKE = '9'
     DUNDERLINE = '21'
+    # reset codes
+    RESET_ALL = '0'
+    RESET_FOREGROUND = '39'
+    RESET_BACKGROUND = '49'
+    RESET_INTENSITY = '22'  # neither bold nor faint
+    NO_BLINK = '25'
+    NO_STRIKE = '29'
+    NO_UNDERLINE = '24'
 
 
 class Colour(str, Enum):
