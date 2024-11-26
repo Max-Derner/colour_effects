@@ -1,17 +1,17 @@
 #! /bin/bash
 if [ -z $1 ]; then
-    if ! python3 -m venv cfx; then
+    if ! python3 -m venv cfxenv; then
         echo "FAILED!"
         exit 1
     fi
 else
-    if ! python"$1" -m venv cfx; then
+    if ! python"$1" -m venv cfxenv; then
         echo "FAILED!"
         exit 1
     fi
 fi
 
-cat .env | sudo tee -a ./cfx/bin/activate
-. cfx/bin/activate
+cat .env | sudo tee -a ./cfxenv/bin/activate
+. cfxenv/bin/activate
 pip install --upgrade pip
 pip install -r dev-requirements.txt

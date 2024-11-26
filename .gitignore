@@ -10,4 +10,4 @@ zzz/
 **/__pycache__
 
 # Don't send the venv!
-cfx
+cfxenv
