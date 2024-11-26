@@ -1,0 +1,7 @@
+#! /bin/bash
+
+python3 -m venv cfx
+cat .env | sudo tee -a ./cfx/bin/activate
+. cfx/bin/activate
+pip install --upgrade pip
+pip install -r dev-requirements.txt
