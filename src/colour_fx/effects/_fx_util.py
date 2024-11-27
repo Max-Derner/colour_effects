@@ -1,6 +1,6 @@
 from typing import Any, Union, Tuple
 
-from colour_fx import ansi_field
+from colour_fx._util import ansi_field, compile_ansi_code
 
 
 def produce_ansi_field(
@@ -120,3 +120,37 @@ def _is_valid_ansi_field(obj: Any) -> Tuple[bool, str]:
                     )
                     return False, err_msg
     return True, ""
+
+
+def apply_ansi_field(
+        text: str,
+        field: ansi_field,
+        ) -> str:
+    lines_of_text = text.split('\n')
+    output = ''
+    current_ansi_vals = None
+    RESET = compile_ansi_code()
+    for line_no, line in enumerate(lines_of_text):
+        line_no = line_no % len(field)
+        column_details = field[line_no]
+        for idx, char in enumerate(line):
+            idx = idx % len(column_details)
+            if current_ansi_vals != (new_vals := column_details[idx]):
+                current_ansi_vals = new_vals
+                escape_sequence = compile_ansi_code(*current_ansi_vals)
+                if escape_sequence == RESET:
+                    output += (
+                        RESET
+                        + char
+                    )
+                else:
+                    output += (
+                        RESET
+                        + escape_sequence
+                        + char
+                    )
+            else:
+                output += char
+        output += RESET + '\n'
+        current_ansi_vals = None
+    return output
