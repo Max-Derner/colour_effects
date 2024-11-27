@@ -1,4 +1,4 @@
-[![Test and lint](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml/badge.svg?branch=main)](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml)
+[![Testing and linting](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml/badge.svg?branch=main)](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml)
 
 
 ![promo image](./README_IMGS/promo_img.png)

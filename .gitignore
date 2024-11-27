@@ -11,3 +11,6 @@ zzz/
 
 # Don't send the venv!
 cfxenv
+
+# Don't upload a Pytest coverage report
+.coverage
