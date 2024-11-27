@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Literal
 
-from .basic import ansi_val
+from ._util import ansi_val
 
 
 def _eight_bit_brighten(eight_bit_ansi_val: ansi_val) -> ansi_val:

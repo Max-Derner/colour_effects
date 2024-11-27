@@ -1,5 +1,5 @@
 from enum import Enum
-from .basic import ansi_val
+from ._util import ansi_val
 
 
 # Taken from section 'Select Graphic Rendition parameters' in
