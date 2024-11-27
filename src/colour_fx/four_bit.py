@@ -10,6 +10,7 @@ class Style(str, Enum):
     FAINT = '2'
     UNDERLINE = '4'
     BLINK = '5'
+    INVERT = '7'
     STRIKE = '9'
     DUNDERLINE = '21'
     # reset codes
@@ -18,6 +19,7 @@ class Style(str, Enum):
     RESET_BACKGROUND = '49'
     RESET_INTENSITY = '22'  # neither bold nor faint
     NO_BLINK = '25'
+    NO_INVERT = '27'
     NO_STRIKE = '29'
     NO_UNDERLINE = '24'
 

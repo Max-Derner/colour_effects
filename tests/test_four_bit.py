@@ -82,11 +82,12 @@ class TestColour:
         )
 
 
-@mark.parametrize('got, want', [
+styles = [
     (Style.BOLD, '1'),
     (Style.FAINT, '2'),
     (Style.UNDERLINE, '4'),
     (Style.BLINK, '5'),
+    (Style.INVERT, '7'),
     (Style.STRIKE, '9'),
     (Style.DUNDERLINE, '21'),
     (Style.RESET_ALL, '0'),
@@ -94,15 +95,19 @@ class TestColour:
     (Style.RESET_BACKGROUND, '49'),
     (Style.RESET_INTENSITY, '22'),
     (Style.NO_BLINK, '25'),
+    (Style.NO_INVERT, '27'),
     (Style.NO_STRIKE, '29'),
     (Style.NO_UNDERLINE, '24'),
-])
+]
+
+
+@mark.parametrize('got, want', styles)
 def test_styles(got: Style, want: str):
     assert got == want, "Style incorrectly mapped"
 
 
 def test_num_styles():
-    assert len(Style) == 13, (
+    assert len(Style) == len(styles), (
         "Number of styles changed, must modify "
-        "'test_styles' test to capture change"
+        "'styles' variable to capture change"
     )
