@@ -6,14 +6,34 @@ from colour_fx import ansi_field
 def produce_ansi_field(
         template: Union[str, ansi_field],
         ) -> ansi_field:
-    """An ANSI field is a 3 dimensional list of strings. The first
-    dimension represents each line of text, the second dimension
-    represents each individual character, and the third dimension
-    represents to different ANSI values that will be compiled into a
-    single ANSI escape sequence for that character.
+    """Accepts either the text for which you wish to create an ANSI
+    field, or a previous ANSI field you want copying
 
-    Accepts either the text for which you wish to create an ANSI
-    field, or a previous ANSI field you want copying"""
+    Returns an ANSI field which can then be passed into
+    `apply_ansi_field(text, ansi_field)`:
+
+    An ANSI field is a 3 dimensional list of strings that can be put
+    in an ANSI escape sequence SGR. The first dimension represents each
+    line of text, the second dimension represents each individual
+    character, and the third dimension represents different ANSI
+    values that will be compiled into a single ANSI escape sequence for
+    that character.
+
+    Example:
+
+    ```python
+    from colour_fx.four_bit import Colour
+    [
+        [[Colour.RED], [], [Colour.BLACK, Colour.CYAN.background]],
+        [[], [], []],
+        [[Colour.BLACK, Colour.CYAN.background], [], [Colour.RED]],
+    ]
+    ```
+    This ANSI field represents a pattern in a 3x3 grid, the top left and
+    bottom right corners will have red text and no background. The top
+    right and bottom left corners will have black text on a cyan
+    background. Everything else will have default rendering.
+    """
     valid_template, err_reason = _is_valid_template(template)
     if valid_template:
         if isinstance(template, str):
