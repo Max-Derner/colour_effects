@@ -1,3 +1,5 @@
+from typing import Union
+
 from colour_fx._util import ansi_field, ansi_val_collection
 from colour_fx.effects._fx_util import (
     produce_ansi_field,
@@ -6,7 +8,7 @@ from colour_fx.effects._fx_util import (
 
 
 def create_vertical_gradient(
-        template: str | ansi_field,
+        template: Union[str, ansi_field],
         ansi_vals: ansi_val_collection,
         *,
         step: int = 1,
