@@ -7,7 +7,7 @@ from colour_fx.effects._fx_util import (
 )
 
 
-def create_vertical_gradient(
+def create_vertical_gradient_field(
         template: Union[str, ansi_field],
         ansi_vals: ansi_val_collection,
         *,
@@ -29,7 +29,7 @@ def create_vertical_gradient(
     return field
 
 
-def create_horizontal_gradient(
+def create_horizontal_gradient_field(
         template: Union[str, ansi_field],
         ansi_vals: ansi_val_collection,
         *,

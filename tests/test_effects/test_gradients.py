@@ -1,8 +1,8 @@
 from pytest import mark
 
 from colour_fx.effects.gradients import (
-    create_vertical_gradient,
-    create_horizontal_gradient,
+    create_vertical_gradient_field,
+    create_horizontal_gradient_field,
 )
 
 
@@ -227,7 +227,7 @@ def test_create_vertical_gradient(
     ind,
     expected
 ):
-    got = create_vertical_gradient(
+    got = create_vertical_gradient_field(
         template=feed_in,
         ansi_vals=vals,
         step=step,
@@ -480,7 +480,7 @@ def test_create_horizontal_gradient(
     ind,
     expected
 ):
-    got = create_horizontal_gradient(
+    got = create_horizontal_gradient_field(
         template=feed_in,
         ansi_vals=vals,
         step=step,
