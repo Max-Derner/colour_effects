@@ -1,4 +1,5 @@
 from typing import Any, Union, Tuple
+from math import ceil
 
 from colour_fx._util import ansi_field, compile_ansi_code
 
@@ -154,3 +155,30 @@ def apply_ansi_field(
         output += RESET + '\n'
         current_ansi_vals = None
     return output
+
+
+def stretch_ansi_val_collection(
+        array_length: int,
+        ansi_vals: list[str],
+) -> list[str]:
+    """expands a list of ANSI code value to a new length such that any
+    value appearing before another value in the original list will not
+    appear after that value in the new list.
+
+    Example:
+
+    `[1, 2, 3]` with new length `6` gives `[1, 1, 2, 2, 3, 3]`
+
+    An intentional quirk is that each element of the original
+    `ansi_vals` will be repeated the same amount and so returned list
+    may be longer than requested. This is to give uniformity when used
+    in conjunction with sloped gradients.
+
+    Example:
+    `[1, 2]` with new length `3` gives `[1, 1, 2, 2]`"""
+    colour_length = ceil(array_length / len(ansi_vals))
+    return [
+        ansi_code
+        for ansi_code in ansi_vals
+        for _ in range(colour_length)
+    ]
