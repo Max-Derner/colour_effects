@@ -108,7 +108,7 @@ class Grey(str, Enum):
 
 
 class RGB:
-    """Accepts rgb values between 0 and 6 inclusive, then produces ANSI
+    """Accepts rgb values between 0 and 5 inclusive, then produces ANSI
     values when requested via the foreground and background properties"""
     def __init__(self,
                  r: Literal[0, 1, 2, 3, 4, 5],
