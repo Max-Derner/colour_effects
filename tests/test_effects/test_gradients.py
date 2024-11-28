@@ -1,6 +1,9 @@
 from pytest import mark
 
-from colour_fx.effects.gradients import create_vertical_gradient
+from colour_fx.effects.gradients import (
+    create_vertical_gradient,
+    create_horizontal_gradient,
+)
 
 
 @mark.parametrize('test_name, feed_in, vals, step, ind, expected', [
@@ -225,6 +228,259 @@ def test_create_vertical_gradient(
     expected
 ):
     got = create_vertical_gradient(
+        template=feed_in,
+        ansi_vals=vals,
+        step=step,
+        indent=ind
+    )
+
+    assert got is not feed_in, "failed: mutated input template"
+    assert got == expected, (
+        F"test: '{test_name}' failed\n"
+        F"got: {got}\n"
+        F"expected: {expected}"
+    )
+
+
+@mark.parametrize('test_name, feed_in, vals, step, ind, expected', [
+    (
+        # test name
+        "normal happy path",
+        # feed_in
+        [
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+        ],
+        # vals
+        [[1], [2]],
+        # step
+        1,
+        # indent
+        0,
+        # expected
+        [
+            [[1], [1], [1], [1]],
+            [[1], [1], [1], [1]],
+            [[1], [1], [1], [1]],
+            [[2], [2], [2], [2]],
+            [[2], [2], [2], [2]],
+        ],
+    ),
+    (
+        # test name
+        "zero step test",
+        # feed_in
+        [
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+        ],
+        # vals
+        [[1], [2]],
+        # step
+        1,
+        # indent
+        0,
+        # expected
+        [
+            [[1], [1], [1], [1]],
+            [[1], [1], [1], [1]],
+            [[1], [1], [1], [1]],
+            [[2], [2], [2], [2]],
+            [[2], [2], [2], [2]],
+        ],
+    ),
+    (
+        # test name
+        "indent test",
+        # feed_in
+        [
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+        ],
+        # vals
+        [[1], [2]],
+        # step
+        1,
+        # indent
+        1,
+        # expected
+        [
+            [[1], [1], [1], [2]],
+            [[1], [1], [2], [2]],
+            [[1], [2], [2], [2]],
+            [[2], [2], [2], [1]],
+            [[2], [2], [1], [1]],
+        ],
+    ),
+    (
+        # test name
+        "reverse indent test",
+        # feed_in
+        [
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+        ],
+        # vals
+        [[1], [2]],
+        # step
+        1,
+        # indent
+        -1,
+        # expected
+        [
+            [[1], [2], [2], [2]],
+            [[1], [1], [2], [2]],
+            [[1], [1], [1], [2]],
+            [[2], [1], [1], [1]],
+            [[2], [2], [1], [1]],
+        ],
+    ),
+    (
+        # test name
+        "step test",
+        # feed_in
+        [
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+        ],
+        # vals
+        [[1], [2]],
+        # step
+        2,
+        # indent
+        1,
+        # expected
+        [
+            [[1], [1], [1], [1]],
+            [[1], [1], [1], [1]],
+            [[1], [1], [2], [2]],
+            [[2], [2], [2], [2]],
+            [[2], [2], [2], [2]],
+        ],
+    ),
+    (
+        # test name
+        "long input vals + indent test",
+        # feed_in
+        [
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+        ],
+        # vals
+        [[1], [2], [3], [4], [5], [6], [7]],
+        # step
+        1,
+        # indent
+        1,
+        # expected
+        [
+            [[1], [2], [3], [4]],
+            [[2], [3], [4], [5]],
+            [[3], [4], [5], [6]],
+            [[4], [5], [6], [7]],
+            [[5], [6], [7], [1]],
+        ],
+    ),
+    (
+        # test name
+        "multiple vals test",
+        # feed_in
+        [
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+            [[], [], [], []],
+        ],
+        # vals
+        [[1, 2, 3], [4, 5, 6]],
+        # step
+        1,
+        # indent
+        1,
+        # expected
+        [
+            [[1, 2, 3], [1, 2, 3], [1, 2, 3], [4, 5, 6]],
+            [[1, 2, 3], [1, 2, 3], [4, 5, 6], [4, 5, 6]],
+            [[1, 2, 3], [4, 5, 6], [4, 5, 6], [4, 5, 6]],
+            [[4, 5, 6], [4, 5, 6], [4, 5, 6], [1, 2, 3]],
+            [[4, 5, 6], [4, 5, 6], [1, 2, 3], [1, 2, 3]],
+        ],
+    ),
+    (
+        # test name
+        "text template test",
+        # feed_in
+        "\n\ntest\n\n",
+        # vals
+        [[1], [2], [3], [4], [5], [6], [7]],
+        # step
+        1,
+        # indent
+        1,
+        # expected
+        [
+            [[1], [2], [3], [4]],
+            [[2], [3], [4], [5]],
+            [[3], [4], [5], [6]],
+            [[4], [5], [6], [7]],
+            [[5], [6], [7], [1]],
+        ],
+    ),
+    (
+        # test name
+        "overlay test",
+        # feed_in
+        [
+            [['11'], ['12'], ['13'], ['14']],
+            [['21'], ['22'], ['23'], ['24']],
+            [['31'], ['32'], ['33'], ['34']],
+            [['41'], ['42'], ['43'], ['44']],
+            [['51'], ['52'], ['53'], ['54']],
+        ],
+        # vals
+        [[1], [2], [3], [4], [5], [6], [7]],
+        # step
+        1,
+        # indent
+        1,
+        # expected
+        [
+            [['11', 1], ['12', 2], ['13', 3], ['14', 4]],
+            [['21', 2], ['22', 3], ['23', 4], ['24', 5]],
+            [['31', 3], ['32', 4], ['33', 5], ['34', 6]],
+            [['41', 4], ['42', 5], ['43', 6], ['44', 7]],
+            [['51', 5], ['52', 6], ['53', 7], ['54', 1]],
+        ],
+    ),
+])
+def test_create_horizontal_gradient(
+    test_name,
+    feed_in,
+    vals,
+    step,
+    ind,
+    expected
+):
+    got = create_horizontal_gradient(
         template=feed_in,
         ansi_vals=vals,
         step=step,
