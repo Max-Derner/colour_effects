@@ -231,6 +231,7 @@ def test_create_vertical_gradient(
         indent=ind
     )
 
+    assert got is not feed_in, "failed: mutated input template"
     assert got == expected, (
         F"test: '{test_name}' failed\n"
         F"got: {got}\n"
