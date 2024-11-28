@@ -5,7 +5,7 @@ from colour_fx._util import ansi_field, compile_ansi_code
 
 def produce_ansi_field(
         template: Union[str, ansi_field],
-        ) -> ansi_field:
+) -> ansi_field:
     """Accepts either the text for which you wish to create an ANSI
     field, or a previous ANSI field you want copying
 
@@ -125,7 +125,7 @@ def _is_valid_ansi_field(obj: Any) -> Tuple[bool, str]:
 def apply_ansi_field(
         text: str,
         field: ansi_field,
-        ) -> str:
+) -> str:
     lines_of_text = text.split('\n')
     output = ''
     current_ansi_vals = None
