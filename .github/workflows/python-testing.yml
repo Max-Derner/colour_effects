@@ -5,7 +5,7 @@ name: Testing and linting
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:
     branches: [ "main" ]
 
@@ -26,15 +26,14 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install a virtual environment
       run: |
-        ./setup-venv
+        . ./tooling && setup-venv
     - name: Lint with Flake8
       run: |
         . ./cfxenv/bin/activate
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --config tox.ini --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --config tox.ini --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        # Ruthless linting, one ignore rule (config in ./.flake8)
+        . ./tooling && lint-cfx
     - name: Test with Pytest and report coverage
       run: |
         . ./cfxenv/bin/activate
-        pytest --cov-report term-missing --cov=src tests/
+        # Ruthless testing - all pass with 100% coverage
+        . ./tooling && test-cfx

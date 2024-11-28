@@ -3,3 +3,5 @@ extend-exclude =
     cfxenv,
     zzz,
     POCs,
+ignore = 
+    W503
