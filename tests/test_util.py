@@ -1,4 +1,4 @@
-from colour_fx import compile_ansi_code, CSI, SGR
+from colour_fx._util import compile_ansi_code, CSI, SGR
 
 
 def test_compile_ansi_code():
