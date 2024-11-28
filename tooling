@@ -29,5 +29,5 @@ lint-cfx() {
 }
 
 test-cfx() {
-    pytest --cov-report term-missing --cov-fail-under=100 --cov=src tests/ $@
+    pytest --cov-report term-missing --cov-fail-under=100 --cov=src $@
 }
