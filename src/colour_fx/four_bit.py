@@ -6,6 +6,14 @@ from colour_fx._util import ansi_val
 # https://en.wikipedia.org/wiki/ANSI_escape_code#Control_Sequence_Introducer_commands
 # Skipping lots of stuff that's not widely supported
 class Style(str, Enum):
+    """Produces a 4 bit ANSI style code value which can be inserted
+    into an ANSI escape sequence.
+
+    Example:
+
+    ```python
+    blinking = Style.BLINK
+    ```"""
     BOLD = '1'
     FAINT = '2'
     UNDERLINE = '4'
@@ -25,6 +33,19 @@ class Style(str, Enum):
 
 
 class Colour(str, Enum):
+    """Produces a 4 bit ANSI colour code value which can be inserted
+    into an ANSI escape sequence.
+
+    Produces code for foreground colour by default. Access properties
+    `bright`, `background`, and `bright_background` in order to modify
+    as appropriate.
+
+    Example:
+    ```python
+    red_foreground = Colour.RED
+
+    blue_background = Colour.BLUE.background
+    """
     BLACK = '30'
     RED = '31'
     GREEN = '32'
