@@ -1,3 +1,5 @@
 pytest~=8.3
 flake8~=7.1
 pytest-cov~=6.0
+build~=1.2
+twine~=5.1

@@ -1,7 +1,7 @@
 [![Testing and linting](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml/badge.svg?branch=main)](https://github.com/Max-Derner/colour_effects/actions/workflows/python-testing.yml)
 
 
-![promo image](./README_IMGS/promo_img.png)
+![promo image](https://github.com/Max-Derner/colour_fx/blob/main/README_IMGS/promo_img.png?raw=true)
 
 This a project to develop a Python PyPI package that not just handles colour text output but can also apply colour effects such as gradients to your text.
 
@@ -46,7 +46,7 @@ RESET = compile_ansi_code()
 
 print(F"HELLO, {blinking_red_on_yellow}WORLD{RESET}!")
 ```
-![Colour example output](./README_IMGS/Colour-example-output.gif)
+![Colour example output](https://github.com/Max-Derner/colour_fx/blob/main/README_IMGS/Colour-example-output.gif?raw=true)
 
 ## 8 bit examples
 
@@ -72,7 +72,7 @@ RESET = compile_ansi_code()
 print(F"HELLO, {red_on_yellow}WORLD{RESET}!")
 ```
 #### output
-![SipleColour example output](./README_IMGS/SimpleColour-example-output.png)
+![SipleColour example output](https://github.com/Max-Derner/colour_fx/blob/main//README_IMGS/SimpleColour-example-output.png?raw=true)
 
 ### `Grey`
 ```python
@@ -121,7 +121,7 @@ print(
 )
 ```
 #### output
-![Grey example output](./README_IMGS/Grey-example-output.png)
+![Grey example output](https://github.com/Max-Derner/colour_fx/blob/main/README_IMGS/Grey-example-output.png?raw=true)
 
 ### `RGB`
 ```python
@@ -157,7 +157,7 @@ print(F"{s[0]}HE{s[1]}LL{s[2]}O,{s[3]} WO{s[4]}RL{s[5]}D!{RESET}")
 ```
 
 #### output
-![RGB output](./README_IMGS/RGB-example-output.png)
+![RGB output](https://github.com/Max-Derner/colour_fx/blob/main/README_IMGS/RGB-example-output.png?raw=true)
 
 
 # Getting advanced
@@ -204,7 +204,7 @@ output_text = apply_ansi_field(
 print(output_text)
 ```
 #### output
-![vertical gradient example output](./README_IMGS/vertical-gradient-example-output.png)
+![vertical gradient example output](https://github.com/Max-Derner/colour_fx/blob/main/README_IMGS/vertical-gradient-example-output.png?raw=true)
 
 
 # Working on this?
