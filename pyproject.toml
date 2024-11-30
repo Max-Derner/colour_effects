@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "colour_fx"
+version = "1.0.1"
+authors = [
+  { name="Max Derner", email="max.derner@gmail.com" },
+]
+description = "Colour handling through 4 bit and 8 bit ANSI escape sequences. Powerful effects like gradients for blocks of text such as figlet banners."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/Max-Derner/colour_fx"
+Issues = "https://github.com/Max-Derner/colour_fx/issues"
