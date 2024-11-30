@@ -2,8 +2,10 @@
 
 ## 1. Tag new version
 * Update [`pyproject.toml`](./pyproject.toml) with new version
+* Commit work
+* Tag version `git tag -a v<VERSION>`
 * Merge work to main branch
-* Create [new release on GitHub](https://github.com/Max-Derner/colour_fx/releases/new)
+* Create [new release on GitHub](https://github.com/Max-Derner/colour_fx/releases/new) with same version
 
 ## 2. Create new distribution
 * Run `python3 -m build`
