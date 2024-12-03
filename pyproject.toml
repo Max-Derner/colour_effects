@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "colour_fx"
-version = "1.0.1"
+version = "2.0.1"
 authors = [
   { name="Max Derner", email="max.derner@gmail.com" },
 ]

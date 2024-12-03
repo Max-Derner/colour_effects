@@ -1,5 +1,5 @@
 from enum import Enum
-from colour_fx._util import ansi_val
+from colour_fx import ansi_val
 
 
 # Taken from section 'Select Graphic Rendition parameters' in
