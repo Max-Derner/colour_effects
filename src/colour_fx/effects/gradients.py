@@ -1,7 +1,7 @@
 from typing import Union
 
-from colour_fx._util import ansi_field, ansi_val_collection
-from colour_fx.effects._fx_util import (
+from colour_fx import ansi_field, ansi_val_collection
+from colour_fx.effects import (
     produce_ansi_field,
     stretch_ansi_val_collection
 )

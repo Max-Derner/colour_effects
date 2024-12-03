@@ -1,6 +1,6 @@
 from pytest import mark
 
-from colour_fx.effects._fx_util import (
+from colour_fx.effects import (
     apply_ansi_field,
     stretch_ansi_val_collection
 )

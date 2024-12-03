@@ -1,6 +1,6 @@
 from pytest import mark, raises
 
-from colour_fx.effects._fx_util import (
+from colour_fx.effects import (
     produce_ansi_field,
     _is_valid_template,
 )
